@@ -7,13 +7,8 @@ import matplotlib.pyplot as plt
 class Hog_descriptor():
     def __init__(self, img, cell_size=16, bin_size=8):
         self.img = img
-<<<<<<< HEAD
-        # self.img = np.sqrt(img / float(np.max(img)))
-        # self.img = img * 255
-=======
-        img = np.sqrt(img / float(np.max(img)))
+        self.img = np.sqrt(img / float(np.max(img)))
         self.img = img * 255
->>>>>>> a52f326f5de27d9e33c3b3aa50af8786c1c46b4a
         self.cell_size = cell_size
         self.bin_size = bin_size
         self.angle_unit = 360 / self.bin_size
