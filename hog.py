@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 class Hog_descriptor():
     def __init__(self, img, cell_size=16, bin_size=8):
         self.img = img
-        self.img = np.sqrt(img / float(np.max(img)))
+        img = np.sqrt(img / float(np.max(img)))
         self.img = img * 255
         self.cell_size = cell_size
         self.bin_size = bin_size
@@ -67,6 +67,8 @@ class Hog_descriptor():
     def get_closest_bins(self, gradient_angle):
         idx = int(gradient_angle / self.angle_unit)
         mod = gradient_angle % self.angle_unit
+        if idx == self.bin_size:
+            return idx - 1, (idx) % self.bin_size, mod
         return idx, (idx + 1) % self.bin_size, mod
 
     def render_gradient(self, image, cell_gradient):
@@ -87,7 +89,6 @@ class Hog_descriptor():
                     cv2.line(image, (y1, x1), (y2, x2), int(255 * math.sqrt(magnitude)))
                     angle += angle_gap
         return image
-
 
 img = cv2.imread('data/picture1.png', cv2.IMREAD_GRAYSCALE)
 hog = Hog_descriptor(img, cell_size=8, bin_size=8)
