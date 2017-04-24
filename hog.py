@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 class Hog_descriptor():
     def __init__(self, img, cell_size=16, bin_size=8):
         self.img = img
-        self.img = np.sqrt(img / np.max(img))
+        self.img = np.sqrt(img / float(np.max(img)))
         self.img = img * 255
         self.cell_size = cell_size
         self.bin_size = bin_size
@@ -88,10 +88,11 @@ class Hog_descriptor():
                     angle += angle_gap
         return image
 
-img = cv2.imread('person_037.png', cv2.IMREAD_GRAYSCALE)
+
+img = cv2.imread('data/picture1.png', cv2.IMREAD_GRAYSCALE)
 hog = Hog_descriptor(img, cell_size=8, bin_size=8)
 vector, image = hog.extract()
-print np.array(vector).shape
 plt.imshow(image, cmap=plt.cm.gray)
 plt.show()
+
 
