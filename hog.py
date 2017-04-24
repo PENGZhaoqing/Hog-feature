@@ -8,7 +8,7 @@ class Hog_descriptor():
     def __init__(self, img, cell_size=16, bin_size=8):
         self.img = img
         self.img = np.sqrt(img / float(np.max(img)))
-        self.img = img * 255
+        self.img = self.img * 255
         self.cell_size = cell_size
         self.bin_size = bin_size
         self.angle_unit = 360 / self.bin_size
